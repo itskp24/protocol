@@ -28,9 +28,10 @@
   }
 
   .text-shimmer::before {
-    @apply absolute inset-0 -left-full w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    @apply absolute inset-0 w-[200%] -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
     content: '';
-    animation: text-shimmer 2s infinite;
+    animation: text-shimmer 3s ease-in-out infinite;
+    mix-blend-mode: overlay;
   }
 
   @keyframes shimmer {
@@ -40,10 +41,10 @@
   }
 
   @keyframes text-shimmer {
-    from {
+    0% {
       transform: translateX(-100%);
     }
-    to {
+    100% {
       transform: translateX(50%);
     }
   }
