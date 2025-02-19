@@ -3,25 +3,42 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
-const roles = [
-  "Frontend Developer",
-  "React Specialist",
-  "Next.js Developer",
-  "UI/UX Enthusiast"
+const content = [
+  {
+    role: "Frontend Developer",
+    description: "Experienced Frontend Developer with 3+ years of expertise in building modern, dynamic web applications. Skilled in using React.js, Next.js, and Redux to create engaging user interfaces and optimize application performance."
+  },
+  {
+    role: "React Specialist",
+    description: "Passionate React expert crafting seamless user experiences with modern React patterns. Proficient in React hooks, context API, and state management solutions like Redux and Zustand."
+  },
+  {
+    role: "Next.js Developer",
+    description: "Building blazing-fast web applications with Next.js. Experienced in server-side rendering, static site generation, and creating optimized, SEO-friendly web applications."
+  },
+  {
+    role: "UI/UX Enthusiast",
+    description: "Creating beautiful and intuitive user interfaces with a focus on user experience. Skilled in responsive design, animation, and accessibility best practices."
+  }
 ];
 
 export default function HeroSection() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
+  const [contentIndex, setContentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTyping(true);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setContentIndex((prev) => (prev + 1) % content.length);
+        setIsAnimating(false);
+      }, 500); // Wait for fade out before changing content
     }, 4000); // Change every 4 seconds
 
     return () => clearInterval(interval);
   }, []);
+
+  const currentContent = content[contentIndex];
 
   return (
     <section className="min-h-screen pt-16 flex items-center" id="about">
@@ -33,22 +50,25 @@ export default function HeroSection() {
           className="max-w-3xl"
         >
           <motion.h1 
-            key={roles[roleIndex]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            key={`title-${contentIndex}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            {roles[roleIndex]}
+            {currentContent.role}
           </motion.h1>
 
           <motion.p
+            key={`desc-${contentIndex}`}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-xl text-muted-foreground mb-8"
           >
-            Experienced Frontend Developer with 3+ years of expertise in building modern, dynamic web applications. Skilled in using React.js, Next.js, and Redux to create engaging user interfaces and optimize application performance.
+            {currentContent.description}
           </motion.p>
 
           <div className="flex flex-wrap gap-4">
