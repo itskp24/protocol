@@ -1,82 +1,97 @@
-# Detailed Setup Guide
-
-## Prerequisites
-
-1. Node.js v20 or later
-2. npm v9 or later
-3. Git Bash (for Windows users)
-
-## Installation Steps
-
-### 1. Clone and Install Dependencies
-
-```bash
 git clone <repository-url>
 cd <project-directory>
 npm install
 ```
 
-### 2. Running the Application
+## Running the Application
 
-The application consists of both a server and client that run together using a single command:
+### Important: Always run commands from the project root directory!
 
 ```bash
+# First, make sure you're in the project root directory (where package.json is)
+# NOT in client/ or server/ directories
+
+# 1. Install dependencies
+npm install
+
+# 2. Start the application
 npm run dev
 ```
 
-This command will start both:
-- Express server (backend) on port 5000
-- Vite development server (frontend) on the same port
-
-### 3. Common Issues and Solutions
+### Common Errors
 
 #### ESM URL Scheme Error
-
 If you see this error:
 ```
 Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader
 ```
 
-Solutions:
-1. Make sure you're in the project root directory, not in client/ or server/
-2. Run the following commands:
+This usually happens when:
+1. You're running the command from the wrong directory (e.g., from client/ or server/)
+2. Node modules are not properly installed
+
+To fix:
+
 ```bash
-# Clean npm cache
-npm cache clean --force
+# 1. Make sure you're in the project root directory
+cd /path/to/your/project  # where package.json is located
 
-# Delete node_modules and package-lock.json
+# 2. Clean installation
 rm -rf node_modules package-lock.json
-
-# Reinstall dependencies
+npm cache clean --force
 npm install
 
-# Start the application
+# 3. Start the application again
 npm run dev
 ```
 
-#### Port Already in Use
+## Project Structure and Commands
 
-If port 5000 is already in use:
+The application is set up to run both client and server together:
+- Client (Vite frontend): Runs on port 5000
+- Server (Express backend): Also runs on port 5000
 
-**Windows:**
-```cmd
-# Find the process using port 5000
+You don't need to run the client and server separately - they are configured to work together through a single command.
+
+## Development Mode
+
+When you run `npm run dev`, it:
+1. Starts the Express server
+2. Sets up Vite development server
+3. Configures proxy for API requests
+
+
+## Troubleshooting
+
+If the application won't start:
+1. Check you're in the right directory:
+```bash
+# Should show the package.json
+ls package.json
+```
+
+2. Verify Node.js version:
+```bash
+node --version  # Should be v20 or higher
+```
+
+3. Clear npm cache and reinstall:
+```bash
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+```
+
+4. Check port availability:
+```bash
+# Windows (Command Prompt)
 netstat -ano | findstr :5000
 
-# Kill the process (replace <PID> with the actual process ID)
-taskkill /PID <PID> /F
-```
-
-**Mac/Linux:**
-```bash
-# Find the process using port 5000
+# Mac/Linux
 lsof -i :5000
-
-# Kill the process (replace <PID> with the actual process ID)
-kill -9 <PID>
 ```
 
-### 4. Project Structure
+### Project Structure
 
 ```
 ├── client/           # Frontend code
@@ -88,60 +103,9 @@ kill -9 <PID>
 └── shared/          # Shared code
 ```
 
-### 5. Development Tips
-
-1. Always run commands from the project root directory, not from client/ or server/
-2. The application uses a single package.json at the root level
-3. Don't run the client separately - the setup is configured to run both frontend and backend together
-4. Check the terminal output for any compilation errors
-5. Make sure your Node.js version is 20 or higher: `node --version`
-
-### 6. Environment Variables
+## Environment Variables
 
 Create a `.env` file in the root directory:
 
 ```env
 DATABASE_URL=postgresql://username:password@localhost:5432/database_name
-```
-
-### 7. Verification
-
-To verify the application is running correctly:
-
-1. Open `http://localhost:5000` in your browser
-2. You should see the portfolio website
-3. Check the browser console for any errors
-4. Check the terminal for any server-side errors
-
-### 8. Troubleshooting Steps
-
-If you encounter issues:
-
-1. Verify Node.js version:
-```bash
-node --version  # Should be v20.x or higher
-```
-
-2. Clean and reinstall:
-```bash
-rm -rf node_modules package-lock.json
-npm cache clean --force
-npm install
-```
-
-3. Check running processes:
-```bash
-# Windows
-netstat -ano | findstr :5000
-
-# Mac/Linux
-lsof -i :5000
-```
-
-4. Verify you're in the correct directory:
-```bash
-# Should show package.json
-ls package.json
-```
-
-If problems persist, check the logs in `npm-debug.log` if it exists.
