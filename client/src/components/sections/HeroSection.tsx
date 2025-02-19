@@ -20,10 +20,10 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Button asChild>
+            <Button asChild className="shimmer">
               <a href="#contact">Get in Touch</a>
             </Button>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="shimmer">
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                 Download Resume
               </a>  

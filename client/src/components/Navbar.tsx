@@ -13,22 +13,22 @@ export default function Navbar() {
         <Link href="/">
           <a className="text-xl font-bold">Parth Khandla</a>
         </Link>
-        
+
         <div className="hidden md:flex items-center gap-8">
           <Link href="#about">
-            <a className="hover:text-primary transition-colors">About</a>
+            <a className="shimmer hover:text-primary/80 transition-colors">About</a>
           </Link>
           <Link href="#skills">
-            <a className="hover:text-primary transition-colors">Skills</a>  
+            <a className="shimmer hover:text-primary/80 transition-colors">Skills</a>  
           </Link>
           <Link href="#projects">
-            <a className="hover:text-primary transition-colors">Projects</a>
+            <a className="shimmer hover:text-primary/80 transition-colors">Projects</a>
           </Link>
           <Link href="#experience">
-            <a className="hover:text-primary transition-colors">Experience</a>
+            <a className="shimmer hover:text-primary/80 transition-colors">Experience</a>
           </Link>
           <Link href="#contact">
-            <Button>Contact</Button>
+            <Button className="shimmer">Contact</Button>
           </Link>
         </div>
       </nav>
