@@ -15,17 +15,17 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <a href="#about" className="hover:text-primary transition-colors">
-            <span className="text-shimmer">About</span>
+          <a href="#about" className="hover:text-primary/60 transition-colors">
+            About
           </a>
-          <a href="#skills" className="hover:text-primary transition-colors">
-            <span className="text-shimmer">Skills</span>
+          <a href="#skills" className="hover:text-primary/60 transition-colors">
+            Skills
           </a>
-          <a href="#projects" className="hover:text-primary transition-colors">
-            <span className="text-shimmer">Projects</span>
+          <a href="#projects" className="hover:text-primary/60 transition-colors">
+            Projects
           </a>
-          <a href="#experience" className="hover:text-primary transition-colors">
-            <span className="text-shimmer">Experience</span>
+          <a href="#experience" className="hover:text-primary/60 transition-colors">
+            Experience
           </a>
           <a href="#contact">
             <Button className="shimmer">Contact</Button>
