@@ -16,16 +16,16 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8">
           <Link href="#about">
-            <a className="shimmer hover:text-primary/80 transition-colors">About</a>
+            <a className="text-shimmer hover:text-primary/80 transition-colors">About</a>
           </Link>
           <Link href="#skills">
-            <a className="shimmer hover:text-primary/80 transition-colors">Skills</a>  
+            <a className="text-shimmer hover:text-primary/80 transition-colors">Skills</a>  
           </Link>
           <Link href="#projects">
-            <a className="shimmer hover:text-primary/80 transition-colors">Projects</a>
+            <a className="text-shimmer hover:text-primary/80 transition-colors">Projects</a>
           </Link>
           <Link href="#experience">
-            <a className="shimmer hover:text-primary/80 transition-colors">Experience</a>
+            <a className="text-shimmer hover:text-primary/80 transition-colors">Experience</a>
           </Link>
           <Link href="#contact">
             <Button className="shimmer">Contact</Button>

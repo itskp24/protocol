@@ -23,9 +23,28 @@
     animation: shimmer 2s infinite;
   }
 
+  .text-shimmer {
+    @apply relative inline-block;
+  }
+
+  .text-shimmer::before {
+    @apply absolute inset-0 -left-full w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    content: '';
+    animation: text-shimmer 2s infinite;
+  }
+
   @keyframes shimmer {
     100% {
       left: 200%;
+    }
+  }
+
+  @keyframes text-shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(50%);
     }
   }
 }
